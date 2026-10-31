@@ -1,0 +1,15 @@
+land_area_sqfeet
+q227_a_plot_area
+q228_plot_use_house
+q311_grid_yrs
+s_name
+q463_tv_most_screen_size_inch
+q222_yrs_samehouse
+interview_month
+q235_income_source
+q234_month_exp
+q413_ceiling_fan_mostused_yrs
+q315_a_bill_mar_jun
+q103_survey_type
+q213_no_members
+avg_monthly_bill

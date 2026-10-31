@@ -1,0 +1,5 @@
+team: shunyapulse
+problem: p1
+entry: "python predict.py --input {input_csv} --output {output_csv}"
+python: "3.11"
+train_cmd: "python train.py --data-dir {data_dir} --out models/"
