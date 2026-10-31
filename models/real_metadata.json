@@ -2,17 +2,29 @@
   "dataset_rows": 11523,
   "feature_count": 394,
   "cv_benchmarks": {
-    "XGBoost": {
-      "roc_auc": 0.9194
+    "Baseline (Logistic Regression)": {
+      "roc_auc": 0.8868,
+      "accuracy": 0.8172,
+      "solid_fuel_recall": 0.8581,
+      "f1_score": 0.8303
     },
     "LightGBM": {
-      "roc_auc": 0.9189
+      "roc_auc": 0.9189,
+      "accuracy": 0.848,
+      "solid_fuel_recall": 0.8884,
+      "f1_score": 0.859
+    },
+    "XGBoost": {
+      "roc_auc": 0.9194,
+      "accuracy": 0.8458,
+      "solid_fuel_recall": 0.8859,
+      "f1_score": 0.8569
     },
     "Champion Blend": {
       "roc_auc": 0.9201,
-      "accuracy": 0.8468,
-      "solid_fuel_recall": 0.8878,
-      "f1_score": 0.858
+      "accuracy": 0.8475,
+      "solid_fuel_recall": 0.8886,
+      "f1_score": 0.8586
     }
   },
   "top_features": [
