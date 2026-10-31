@@ -113,10 +113,64 @@ streamlit run app.py
 ```
 
 ### Live Cloud Inference API (Swagger UI)
-The production model pipeline is deployed live on Google Cloud Run with interactive OpenAPI Swagger documentation:
+The production model pipeline is deployed live on Google Cloud Run with interactive OpenAPI 3.1 Swagger documentation:
 - **Interactive Swagger UI**: [https://c2c-app-685823552970.asia-south1.run.app/docs](https://c2c-app-685823552970.asia-south1.run.app/docs)
-- **Health Check Endpoint**: [https://c2c-app-685823552970.asia-south1.run.app/health](https://c2c-app-685823552970.asia-south1.run.app/health)
-- **Cross-Validation Metrics**: [https://c2c-app-685823552970.asia-south1.run.app/metrics](https://c2c-app-685823552970.asia-south1.run.app/metrics)
+- **OpenAPI JSON Schema**: [https://c2c-app-685823552970.asia-south1.run.app/openapi.json](https://c2c-app-685823552970.asia-south1.run.app/openapi.json)
+
+#### Deployed Endpoints Specification
+
+| Method | Endpoint | Description | Sample Request / Call |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/health` | Service health status and loaded model verification | `curl https://c2c-app-685823552970.asia-south1.run.app/health` |
+| `GET` | `/metrics` | Official 5-fold cross-validation metrics (AUC, Log Loss, Precision@20%) | `curl https://c2c-app-685823552970.asia-south1.run.app/metrics` |
+| `GET` | `/features` | Top socio-economic predictive features and model attribution | `curl https://c2c-app-685823552970.asia-south1.run.app/features` |
+| `POST` | `/predict` | Full household inference pipeline: returns calibrated fuel probability & Intervention Priority Index (IPI) | JSON payload with household features (`s_name`, `land_area_sqfeet`, `avg_monthly_bill`, etc.) |
+| `POST` | `/predict_short` | Rapid 15-question field survey model inference (+2 bonus points track) | JSON payload with 15 non-redundant core features |
+
+#### Sample Prediction Request (`POST /predict`)
+```bash
+curl -X POST "https://c2c-app-685823552970.asia-south1.run.app/predict" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "household_id": "HH_LKO_101",
+       "s_name": "Uttar Pradesh",
+       "land_area_sqfeet": 1200.0,
+       "avg_monthly_bill": 350.0,
+       "q216_house_pucca_kachha": 2,
+       "q466_fridge_yn": 0,
+       "q459_tv_yn": 1,
+       "q463_tv_most_screen_size_inch": 32.0,
+       "q311_grid_yrs": 8.0,
+       "q103_survey_type": 1,
+       "q213_no_members": 5,
+       "q214_no_members_lessthan18": 2,
+       "q214_no_members_morethan60": 1,
+       "q234_month_exp": 7500.0,
+       "q235_income_source": 1.0,
+       "q209_edu_highest": 4.0,
+       "q233_a_dom_watersource_1": 0.0,
+       "q232_mobile_smart_n": 1,
+       "q222_yrs_samehouse": 15.0
+     }'
+```
+
+**Sample JSON Response**:
+```json
+{
+  "household_id": "HH_LKO_101",
+  "prob_solid_fuel": 0.884125,
+  "prob_clean_fuel": 0.115875,
+  "predicted_fuel": "Solid Fuel (Chulha)",
+  "priority_score": 87.2,
+  "priority_tier": "Tier 1: Immediate Doorstep Demo + Cylinder Subsidy",
+  "top_reasons": [
+    "Kachha dwelling structure (q216=2)",
+    "Electricity expenditure <= ₹400/month",
+    "Absence of refrigeration unit (q466=0)",
+    "High domestic vulnerability (infants and elderly present)"
+  ]
+}
+```
 
 ## Use of AI tools
 During the hackathon, we utilized AI coding assistants (including Antigravity, Gemini, and Claude) to accelerate exploratory data analysis, implement vector-friendly categorical preprocessing pipelines, and structure cross-validation loops. Specifically, AI tools assisted in drafting baseline model boilerplate, designing responsive Plotly visualizations for the Streamlit dashboard, and generating initial unit tests for evaluator compliance. All machine learning architectures, regularization constraints, survey code cleaning logic, and mathematical formulations for the Intervention Priority Index were rigorously verified, calibrated, and debugged by the human author.
