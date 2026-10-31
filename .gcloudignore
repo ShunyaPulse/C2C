@@ -1,0 +1,15 @@
+.git/
+.github/
+__pycache__/
+*.pyc
+*.pyo
+tests/
+evaluator_schema_check.py
+hack-day-lucknow-datasets/
+submission.csv
+sample_*.csv
+.env
+.venv/
+env/
+venv/
+

@@ -57,3 +57,4 @@ To ensure algorithmic fairness and evaluate disparate performance across sub-pop
 ## 3. Recommendations for Field Deployment
 1. **ASHA / Anganwadi Triage Priority**: Outreach teams should use the top-ranked visit list (`priority_tier == Tier 1`) which captures **88.9% of true solid-fuel households** while filtering out false positives.
 2. **Dynamic Calibration Offsets**: For highly urbanized districts (such as Delhi/Chandigarh), apply a -0.15 prior probability shift to account for structural LPG pipeline availability.
+

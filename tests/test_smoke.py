@@ -1,4 +1,5 @@
 import os
+import sys
 import tempfile
 import unittest
 import subprocess
@@ -26,7 +27,7 @@ class TestSmoke(unittest.TestCase):
             pd.DataFrame(sample_data).to_csv(sample_csv, index=False)
             
             cmd = [
-                "python", os.path.join(base_dir, "predict.py"),
+                sys.executable, os.path.join(base_dir, "predict.py"),
                 "--input", sample_csv,
                 "--output", output_csv
             ]
@@ -54,7 +55,7 @@ class TestSmoke(unittest.TestCase):
             pd.DataFrame(sample_data).to_csv(sample_csv, index=False)
             
             cmd = [
-                "python", os.path.join(base_dir, "predict_short.py"),
+                sys.executable, os.path.join(base_dir, "predict_short.py"),
                 "--input", sample_csv,
                 "--output", output_csv
             ]

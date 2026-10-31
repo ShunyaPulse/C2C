@@ -9,7 +9,11 @@ venv/
 .ipynb_checkpoints/
 *.log
 
-# Challenge data and large files (>5MB rule)
-*.csv.gz
-hack-day-lucknow-datasets/p1-clean-cooking/train.csv
+# Challenge data & large files (Participant Guide p.6 & p.9)
+hack-day-lucknow-datasets/
+submission.csv
 models/enriched_households.csv
+sample_test_input.csv
+sample_test_output.csv
+sample_short_in.csv
+sample_short_out.csv

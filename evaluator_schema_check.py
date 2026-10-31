@@ -216,3 +216,4 @@ def run_full_schema_check():
 if __name__ == "__main__":
     success = run_full_schema_check()
     sys.exit(0 if success else 1)
+
