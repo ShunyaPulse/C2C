@@ -93,3 +93,4 @@
 - [x] Cloud Run Swagger UI open in a tab: `https://c2c-app-685823552970.asia-south1.run.app/docs`.
 - [x] Presentation Deck open in a tab: `c:\Users\LENOVO\OneDrive\Desktop\C2C\presentation.html` (Press `F` or Fullscreen button).
 - [x] Evaluator schema check verified: `python evaluator_schema_check.py` (8/8 PASS).
+
